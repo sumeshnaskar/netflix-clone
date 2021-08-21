@@ -10,7 +10,7 @@ export const Inner = styled.div`
     flex-direction: column;
     padding: 4.375em 2.8125em;
     margin: auto;
-    width: 70%
+    width: 90%
     
 `
 export const Item = styled.div`
