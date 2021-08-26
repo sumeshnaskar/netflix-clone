@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { Header } from '../components'
 import { FooterContainer } from './footer'
 import { SelectProfileContainer } from './profile'
 import { HOME } from '../constants/routes'
+import { FirebaseContext } from '../context/firebase'
 
 export function BrowseContainer(){
     const [category, setCategory] = useState('series')
     const [profile,setProfile] = useState({})
     const [loading, setLoading] = useState(true)
+    const [searchTerm, setSearchTerm] = useState('')
+    const { firebase } = useContext(FirebaseContext)
 
     const user = {
         displayName: "Anonymous",
@@ -32,6 +35,26 @@ export function BrowseContainer(){
                                 onClick={()=>setCategory("films")}>
                                     Films
                             </Header.Link>
+                        </Header.Group>
+                        <Header.Group>
+                            <Header.Search 
+                                searchTerm = {searchTerm} 
+                                setSearchTerm = {setSearchTerm} 
+                            />
+                            <Header.Profile>
+                                <Header.Picture src = { user.photoURL } />
+                                <Header.Dropdown>
+                                    <Header.Group>
+                                        <Header.Picture src = {user.photoURL} />
+                                        <Header.Link>{user.displayName}</Header.Link>
+                                    </Header.Group>
+                                    <Header.Group>
+                                        <Header.Link onClick = { () => firebase.auth().signout() }>
+                                            Sign Out
+                                        </Header.Link>
+                                    </Header.Group>
+                                </Header.Dropdown>
+                            </Header.Profile>
                         </Header.Group>
                     </Header.Frame>
                     <Header.Feature>
