@@ -3,8 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import * as ROUTES from './constants/routes'
 import { Browse, Home, Signin, Signup } from './pages'
+// import { seedDatabase } from './seed'
+// import { FirebaseContext } from './context/firebase'
 
 function App() {
+  // const { firebase } = useContext(FirebaseContext)
+  // seedDatabase(firebase)
   return (
     <Router>
       <Switch>
