@@ -17,6 +17,7 @@ export default function FirebaseContextProvider({ children }){
     }
     
     const firebase = Firebase.initializeApp(config);
+    
     return(
         <FirebaseContext.Provider value = {{ firebase }}>
             {children}

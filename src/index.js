@@ -5,7 +5,7 @@ import App from './App';
 import { GlobalStyles } from './global-styles'
 import FirebaseContextProvider from './context/firebase'
 
-ReactDOM.render(
+ReactDOM.render(    
     <>
         <FirebaseContextProvider>
             <GlobalStyles />
