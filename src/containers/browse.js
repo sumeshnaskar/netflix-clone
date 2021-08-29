@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-
-import { Card, Header, Loading } from '../components'
+import Fuse from 'fuse.js'
+import { Card, Header, Loading, Player } from '../components'
 import { FooterContainer } from './footer'
 import { SelectProfileContainer } from './profile'
 import { HOME } from '../constants/routes'
@@ -31,6 +31,17 @@ export function BrowseContainer({ slides }){
     useEffect(()=>{
         setSlideRows(slides[category])
     },[slides, category])
+
+    useEffect(()=>{
+        const fuse = new Fuse(slideRows, { keys: ['data.description', 'data.title', 'data.genre']})
+        const results = fuse.search(searchTerm).map(({ item }) => item)
+
+        if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0){
+            setSlideRows(results)
+        } else {
+            setSlideRows(slides[category])
+        }
+    },[searchTerm])
 
     return profile.displayName ? 
         (
@@ -64,7 +75,7 @@ export function BrowseContainer({ slides }){
                                         <Header.Link>{user.displayName}</Header.Link>
                                     </Header.Group>
                                     <Header.Group>
-                                        <Header.Link onClick = { () => firebase.auth().signout() }>
+                                        <Header.Link onClick = { () => firebase.auth().signOut() }>
                                             Sign Out
                                         </Header.Link>
                                     </Header.Group>
@@ -99,7 +110,10 @@ export function BrowseContainer({ slides }){
                                 ))}
                             </Card.Entities>
                             <Card.Feature category={category}>
-                                <p>I am the feature!</p>
+                                <Player>
+                                    <Player.Button/>
+                                    <Player.Video/>
+                                </Player>
                             </Card.Feature>
                         </Card>
                     ))}
