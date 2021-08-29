@@ -77,12 +77,12 @@ Card.Feature = function CardFeature({ children, category }){
     const { showFeature, itemFeature, setShowFeature } = useContext(FeatureContext)
 
     return showFeature ? (
-        <Feature src={`/images/${category}/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}>
+        <Feature src={process.env.PUBLIC_URL + `/images/${category}/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}>
             <Content>
                 <FeatureTitle>{itemFeature.title}</FeatureTitle>
                 <FeatureText>{itemFeature.description}</FeatureText>
                 <FeatureClose onClick={() => setShowFeature(false)}>
-                    <img src="/images/icons/close.png" alt="Close" />
+                    <img src={process.env.PUBLIC_URL + "/images/icons/close.png"} alt="Close" />
                 </FeatureClose>
                 <Group margin="30px 0" flexDirection="row" alignItems="center">
                     <Maturity rating={itemFeature.maturity}>

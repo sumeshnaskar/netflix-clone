@@ -14,7 +14,6 @@ function App() {
   // seedDatabase(firebase)
 
   const { user } = useAuthListener()
-  console.log(user)
   return (
     <Router>
       <Switch>

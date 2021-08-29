@@ -50,7 +50,7 @@ export function BrowseContainer({ slides }){
                 <Header src="joker1" dontShowOnSmallViewPort>
                     <Header.Frame>
                         <Header.Group>
-                            <Header.Logo to={HOME} src="/images/misc/logo.svg" alt="Netflix" />
+                            <Header.Logo to={HOME} src={process.env.PUBLIC_URL + "/images/misc/logo.svg"} alt="Netflix" />
                             <Header.Link 
                                 active={category === 'series' ? 'true' : 'false'}
                                 onClick={()=>setCategory("series")}>
@@ -101,7 +101,7 @@ export function BrowseContainer({ slides }){
                             <Card.Entities>
                                 {slideItem.data.map(item => (
                                     <Card.Item key={item.docId} item={item}>
-                                        <Card.Image src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}/>
+                                        <Card.Image src={process.env.PUBLIC_URL + `/images/${category}/${item.genre}/${item.slug}/small.jpg`}/>
                                         <Card.Meta>
                                             <Card.SubTitle>{item.title}</Card.SubTitle>
                                             <Card.Text>{item.description}</Card.Text>
